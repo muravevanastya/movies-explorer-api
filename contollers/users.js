@@ -22,9 +22,9 @@ module.exports.getCurrentUserInfo = (req, res, next) => {
 
 module.exports.updateCurrentUserInfo = (req, res, next) => {
   const { name, email } = req.body;
-  const { _id } = req.user;
+  // const { _id } = req.user;
 
-  User.findByIdAndUpdate(_id, { name, email }, { new: true, runValidators: true })
+  User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .orFail(() => {
       throw new NotFound('Пользователь с таким id не найден');
     })

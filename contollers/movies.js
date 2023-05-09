@@ -25,7 +25,8 @@ module.exports.createMovie = (req, res, next) => {
     movieId,
   } = req.body;
 
-  const { _id } = req.user;
+  // const { _id } = req.user;
+  const owner = req.user._id;
 
   Movie.create({
     country,
@@ -39,7 +40,7 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
-    owner: _id,
+    owner,
   })
     .then((movie) => res.send(movie))
     .catch((err) => {
@@ -55,9 +56,8 @@ module.exports.deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
 
   Movie.findById(movieId)
-    .populate(['owner', 'likes'])
     .orFail(() => {
-      throw new NotFound('Фильм с таким id не найдена');
+      throw new NotFound('Фильм с таким id не найден');
     })
     .then((movie) => {
       if (movie.owner._id.toString() === req.user._id) {
