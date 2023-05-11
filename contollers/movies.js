@@ -18,7 +18,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -35,7 +35,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -53,9 +53,11 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  const { movieId } = req.params;
+  // const { movieId } = req.params;
+  const { id: movieId } = req.params;
 
   Movie.findById(movieId)
+    .populate('owner')
     .orFail(() => {
       throw new NotFound('Фильм с таким id не найден');
     })
