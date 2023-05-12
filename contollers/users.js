@@ -8,7 +8,6 @@ const Conflict = require('../errors/Conflict');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getCurrentUserInfo = (req, res, next) => {
-  // const { userId } = req.params;
   User.findById(req.user._id)
     .orFail(() => {
       throw new NotFound('Пользователь с таким id не найден');
@@ -19,7 +18,6 @@ module.exports.getCurrentUserInfo = (req, res, next) => {
 
 module.exports.updateCurrentUserInfo = (req, res, next) => {
   const { name, email } = req.body;
-  // const { _id } = req.user;
 
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .orFail(() => {
