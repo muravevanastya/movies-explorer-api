@@ -1,4 +1,5 @@
 require('dotenv').config();
+const helmet = require('helmet');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -17,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
 
 app.use(requestLogger);
+
+app.use(helmet());
 
 app.use('/', require('./routes/auth'));
 
