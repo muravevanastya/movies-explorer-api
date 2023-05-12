@@ -7,6 +7,7 @@ const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const NotFound = require('./errors/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rateLimiter');
 
 const { PORT = 3000 } = process.env;
 
@@ -18,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
 
 app.use(requestLogger);
+
+app.use(limiter);
 
 app.use(helmet());
 
