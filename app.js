@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const NotFound = require('./errors/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -25,6 +26,8 @@ app.use('/users', require('./routes/users'));
 app.use('/movies', require('./routes/movies'));
 
 app.use(errorLogger);
+
+app.use(errors());
 
 app.use('*', (req, res, next) => {
   next(new NotFound('Адреса по вашему запросу не существует'));
