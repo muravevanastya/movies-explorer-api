@@ -9,7 +9,7 @@ const urlRegex = /https?:\/\/(www.)?[0-9a-z\-.]{1,}\.\w{1,}((\/[a-z0-9-._~:?#[\]
 router.get('/', getMovies);
 router.post('/', celebrate({
   body: Joi.object().keys({
-    contry: Joi.string().required(),
+    country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
