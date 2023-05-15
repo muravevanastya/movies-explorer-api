@@ -32,10 +32,6 @@ app.use(auth);
 app.use('/users', require('./routes/users'));
 app.use('/movies', require('./routes/movies'));
 
-app.use(errorLogger);
-
-app.use(errors());
-
 app.use('*', (req, res, next) => {
   next(new NotFound('Адреса по вашему запросу не существует'));
 });
@@ -50,5 +46,9 @@ app.use((err, req, res, next) => {
   });
   next();
 });
+
+app.use(errorLogger);
+
+app.use(errors());
 
 app.listen(PORT);
