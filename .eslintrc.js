@@ -4,6 +4,7 @@ module.exports = {
     node: true,
   },
   extends: [
+    'eslint:recommended',
     'airbnb-base',
   ],
   overrides: [
@@ -13,7 +14,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'require',
   ],
   rules: {
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
