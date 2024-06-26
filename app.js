@@ -11,7 +11,7 @@ const corsValidator = require('./middlewares/corsValidator');
 const limiter = require('./middlewares/rateLimiter');
 
 const { DB_ADDRESS = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
-const { PORT = 3000 } = process.env;
+const { PORT = 3003 } = process.env;
 
 const app = express();
 
