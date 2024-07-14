@@ -3,10 +3,10 @@ const allowedCors = [
   'https://moviesearch.nomoredomains.monster',
   'https://api.moviesearch.nomoredomains.monster',
   'http://api.moviesearch.nomoredomains.monster',
-  'http://localhost:3000',
-  'https://localhost:3000',
-  'http://localhost:3001',
-  'https://localhost:3001',
+  'http://localhost:3002',
+  'https://localhost:3002',
+  'http://localhost:3003',
+  'https://localhost:3003',
 ];
 
 module.exports = (req, res, next) => {
